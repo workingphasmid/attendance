@@ -36,7 +36,7 @@ class ScanController extends Controller
         Log::info('Scan attempt', ['user' => $user]);
         // Queue the email so it doesn't block the scan response
         if ($user->email) {
-            Mail::to($user->email)->send(new AttendanceStatusMail($user, $user->status));
+            Mail::to($user->email)->queue(new AttendanceStatusMail($user, $user->status));
         }
 
         return response()->json([
