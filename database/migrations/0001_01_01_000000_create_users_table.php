@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('qr_code')->unique()->nullable()->after('id');
+            $table->string('status')->default('out');
             $table->timestamps();
         });
 
