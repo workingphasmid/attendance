@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
             // Optional: save an actual PNG/SVG file to storage
             $svg = QrCode::format('svg')->size(300)->generate($qrCode);
 
-            Storage::disk('public')->put("qrcodes/{$user->name}.svg", $svg);
+            Storage::disk('public')->put("qrcodes/{$user->id}.svg", $svg);
         }
     }
 }
