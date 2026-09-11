@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Facades\Storage;
+
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\User;
@@ -36,7 +38,8 @@ class DatabaseSeeder extends Seeder
 
             // Optional: save an actual PNG/SVG file to storage
             $svg = QrCode::format('svg')->size(300)->generate($qrCode);
-            file_put_contents(storage_path("app/public/qrcodes/{$user->id}.svg"), $svg);
+
+            Storage::disk('public')->put("qrcodes/{$user->name}.svg", $svg);
         }
     }
 }
