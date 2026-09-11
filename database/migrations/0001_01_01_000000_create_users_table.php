@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('qr_code')->unique()->nullable()->after('id');
+            $table->string('qr_code')->unique()->nullable();
             $table->string('status')->default('out');
             $table->timestamps();
         });
