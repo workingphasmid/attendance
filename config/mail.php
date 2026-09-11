@@ -49,6 +49,15 @@ return [
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
         ],
 
+
+        'mailtrap-sdk' => [
+            'transport' => 'mailtrap-sdk',
+            'host'      => env('MAIL_HOST', 'sandbox.api.mailtrap.io'),
+            'apiKey'    => env('MAILTRAP_API_KEY'),
+            'inboxId'   => env('MAILTRAP_INBOX_ID'),
+        ],
+
+
         'ses' => [
             'transport' => 'ses',
         ],

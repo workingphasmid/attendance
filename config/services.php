@@ -13,6 +13,11 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'mailtrap-sdk' => [
+        'apiKey' => env('MAILTRAP_API_KEY'),
+        'host' => env('MAIL_HOST', 'sandbox.api.mailtrap.io'),
+        'inboxId' => env('MAILTRAP_INBOX_ID', '4905335')
+    ],
 
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
