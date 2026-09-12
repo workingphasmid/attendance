@@ -37,9 +37,13 @@ export default function Welcome() {
                 setUser(null);
                 setError("No user found for this code.");
             }
-        } catch (e) {
+        } catch (error) {
             setUser(null);
-            setError("Lookup failed.");
+            setError(
+                axios.isAxiosError(error) && error.response?.status === 404
+                    ? "No user found for this code."
+                    : "Lookup failed.",
+            );
         }
     };
 
@@ -57,8 +61,8 @@ export default function Welcome() {
         <>
             <Head title="Welcome" />
 
-            <div className="p-6 max-w-md mx-auto">
-                <h1 className="text-xl font-bold mb-4">Scan QR Code</h1>
+            <div className="mx-auto max-w-md p-6">
+                <h1 className="mb-4 text-xl font-bold">Scan QR Code</h1>
 
                 {!scanned && (
                     <Scanner
@@ -73,7 +77,7 @@ export default function Welcome() {
                 )}
 
                 {user && (
-                    <div className="mt-4 p-4 border rounded">
+                    <div className="mt-4 rounded border p-4">
                         <p>
                             <strong>Name:</strong> {user.name}
                         </p>
@@ -86,12 +90,12 @@ export default function Welcome() {
                     </div>
                 )}
 
-                {error && <p className="text-red-500 mt-4">{error}</p>}
+                {error && <p className="mt-4 text-red-500">{error}</p>}
 
                 {scanned && (
                     <button
                         onClick={reset}
-                        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
+                        className="mt-4 rounded bg-blue-600 px-4 py-2 text-white"
                     >
                         Scan again
                     </button>
